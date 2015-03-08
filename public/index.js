@@ -1,5 +1,25 @@
 var EventDispatcher = _.extend({}, Backbone.Events)
 
+
+EventDispatcher.on("addition", function() {
+dataObject.count();
+});
+
+EventDispatcher.on("flick", function() {
+dataObject.flickSwitch();
+});
+
+EventDispatcher.on("siren", function() {
+dataObject.amplify();
+});
+
+EventDispatcher.on("change-amplify", function(value) {
+dataObject.amplify = value;
+});
+
+
+
+
 /*
   Creates a generic object literal. It should have several properties:
 
@@ -10,7 +30,16 @@ var EventDispatcher = _.extend({}, Backbone.Events)
 var dataObject = {
   counter: 0,
   switch: false,
-  amplify: function() {}
+  amplify: function() {},
+  count: function() {this.counter = this.counter + 1},
+  flickSwitch: function() {
+    if (this.switch === false) {
+      this.switch = true;
+      return;
+    }
+    this.switch = false;
+
+  }
 }
 
 
@@ -18,9 +47,7 @@ var dataObject = {
   Write code that listens to the "addition" event on the EventDispatcher
   It adds 1 to the dataObject.counter property
 --------- */
-
 /* TODO */
-
 
 /* ---------
   Write code that listens to the "flick" event on the EventDispatcher
